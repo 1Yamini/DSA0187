@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+   int a,i,s,temp,r;
+   cout<<"enter the number: ";
+   cin>>a;
+   temp=a;
+   while(a!=0)
+   {
+       r=a%10;
+       s=s+(r*r*r);
+       a=a/10;
+   }
+   if(temp==s)
+   {
+       cout<<"armstrong";
+   }
+   else
+   {
+       cout<<"not armstrong";
+   }
+}
