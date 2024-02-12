@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a,i,s=0,temp;
+    cout<<"enter number: ";
+    cin>>a;
+    temp=a;
+    for(i=1;i<a;i++)
+    {
+        if(a%i==0)
+        {
+            s=s+i;
+        }
+    }
+    if(s==temp)
+    {
+        cout<<"perfect";
+    }
+    else
+    {
+        cout<<"not perfect";
+    }
+}
