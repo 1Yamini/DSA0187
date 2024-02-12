@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+     int A[] = {1, 2, 45, 34, 54, 24, 52, 75};
+     int i, x, pos,n;
+     n = sizeof(A) / sizeof(A[0]);
+    cout << "Array Elements :--> ";
+     for (i = 0; i < n; i++)
+          cout << A[i] << " ";
+     cout << "\nEnter Element to Insert :--> ";
+     cin >> x;
+     cout << "Enter Position to Insert At :--> ";
+     cin >> pos;
+     // increase the size by 1
+     n++;
+     if(pos > n)
+     {
+          cout << "\nInvalid Position";
+     }
+     else
+     {
+          // shift elements forward
+          for (i = n; i >= pos; i--)
+               A[i] = A[i - 1];
+          // insert x at pos
+          A[pos - 1] = x;
+          cout << "\nArray After Insertion :--> ";
+          for (i = 0; i < n; i++)
+               cout << A[i] << " ";
+     }
+     return 0;
+}
