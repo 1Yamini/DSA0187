@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a;
+    float b;
+    char c;
+    a=10;
+    b=6.7;
+    c='a';
+    cout<<"Integer value: "<<a;
+    cout<<"\nFloat value: "<<b;
+    cout<<"\nCharacter: "<<c;
+}
