@@ -1,0 +1,10 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a;
+    float b;
+    a=9.8;
+    b=a;
+    cout<<b;
+}
