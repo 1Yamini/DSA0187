@@ -1,0 +1,37 @@
+#include <iostream>
+
+// Function to find the largest element in an array of integers and return its reference
+int& largestElement(int arr[], int size) {
+    int maxIndex = 0;
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > arr[maxIndex]) {
+            maxIndex = i;
+        }
+    }
+    return arr[maxIndex];
+}
+
+int main() {
+    int size;
+    std::cout << "Enter the size of the array: ";
+    std::cin >> size;
+
+    // Dynamically allocate memory for the array
+    int* arr = new int[size];
+
+    std::cout << "Enter " << size << " integers:" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+    }
+
+    // Find the largest element using the largestElement function
+    int& largest = largestElement(arr, size);
+
+    // Display the largest element
+    std::cout << "The largest element in the array is: " << largest << std::endl;
+
+    // Deallocate memory for the array
+    delete[] arr;
+
+    return 0;
+}
