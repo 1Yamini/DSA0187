@@ -1,0 +1,41 @@
+#include <iostream>
+
+class Employee {
+private:
+    std::string name;
+    double salary;
+
+public:
+    // Constructor
+    Employee(const std::string& empName, double empSalary) : name(empName), salary(empSalary) {}
+
+    // Static member function to calculate the average salary
+    static double calculateAverageSalary(Employee* employees[], int numEmployees) {
+        double totalSalary = 0.0;
+        for (int i = 0; i < numEmployees; ++i) {
+            totalSalary += employees[i]->salary;
+        }
+        return (numEmployees > 0) ? (totalSalary / numEmployees) : 0.0;
+    }
+};
+
+int main() {
+    const int numEmployees = 3;
+    Employee* employees[numEmployees];
+
+    // Create Employee objects
+    employees[0] = new Employee("John", 50000.0);
+    employees[1] = new Employee("Jane", 60000.0);
+    employees[2] = new Employee("Doe", 70000.0);
+
+    // Calculate and display the average salary
+    double averageSalary = Employee::calculateAverageSalary(employees, numEmployees);
+    std::cout << "Average Salary: " << averageSalary << std::endl;
+
+    // Deallocate memory for Employee objects
+    for (int i = 0; i < numEmployees; ++i) {
+        delete employees[i];
+    }
+
+    return 0;
+}
