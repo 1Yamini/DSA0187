@@ -1,0 +1,27 @@
+#include <iostream>
+
+int main() {
+    int dividend, divisor;
+
+    // Get user input for the dividend
+    std::cout << "Enter the dividend: ";
+    std::cin >> dividend;
+
+    // Get user input for the divisor
+    std::cout << "Enter the divisor: ";
+    std::cin >> divisor;
+
+    // Check if the divisor is zero
+    if (divisor == 0) {
+        std::cerr << "Error: Division by zero is not allowed." << std::endl;
+        return 1; // Return with error code
+    }
+
+    // Perform division
+    double quotient = static_cast<double>(dividend) / divisor;
+
+    // Display the result
+    std::cout << "Result of division: " << quotient << std::endl;
+
+    return 0;
+}
