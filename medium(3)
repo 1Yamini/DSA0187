@@ -1,0 +1,25 @@
+#include <iostream>
+
+int main() {
+    int year;
+
+    // Get user input for the year
+    std::cout << "Enter a year: ";
+    std::cin >> year;
+
+    // Check if the year is a leap year
+    bool isLeapYear = false;
+
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        isLeapYear = true;
+    }
+
+    // Display the result
+    if (isLeapYear) {
+        std::cout << year << " is a leap year." << std::endl;
+    } else {
+        std::cout << year << " is not a leap year." << std::endl;
+    }
+
+    return 0;
+}
