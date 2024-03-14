@@ -1,0 +1,51 @@
+#include <iostream>
+
+class Complex;
+
+class Matrix {
+public:
+    // Function to multiply a Complex number with a constant
+    friend Complex& multiplyWithConstant(Complex& c, double constant);
+};
+
+class Complex {
+private:
+    double real;
+    double imag;
+
+public:
+    // Constructor
+    Complex(double realPart = 0.0, double imagPart = 0.0) : real(realPart), imag(imagPart) {}
+
+    // Function to display the complex number
+    void display() const {
+        std::cout << real << " + " << imag << "i";
+    }
+
+    // Friend function declaration
+    friend Complex& multiplyWithConstant(Complex& c, double constant);
+};
+
+// Function definition in Matrix class to multiply a Complex number with a constant
+Complex& multiplyWithConstant(Complex& c, double constant) {
+    c.real *= constant;
+    c.imag *= constant;
+    return c;
+}
+
+int main() {
+    Complex num(2.0, 3.0);
+    
+    std::cout << "Original Complex number: ";
+    num.display();
+    std::cout << std::endl;
+    
+    // Multiply the Complex number with a constant using the Matrix class function
+    multiplyWithConstant(num, 2.5);
+    
+    std::cout << "Complex number after multiplication: ";
+    num.display();
+    std::cout << std::endl;
+    
+    return 0;
+}
