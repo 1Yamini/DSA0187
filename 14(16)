@@ -1,0 +1,50 @@
+#include <iostream>
+
+// Function to swap two integers
+void swap(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+// Function to swap two arrays of integers
+void swap(int arr1[], int arr2[], int size) {
+    for (int i = 0; i < size; ++i) {
+        int temp = arr1[i];
+        arr1[i] = arr2[i];
+        arr2[i] = temp;
+    }
+}
+
+// Function to display an array
+void displayArray(int arr[], int size) {
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    // Test swapping two integers
+    int x = 5, y = 10;
+    std::cout << "Before swapping integers: x = " << x << ", y = " << y << std::endl;
+    swap(x, y);
+    std::cout << "After swapping integers: x = " << x << ", y = " << y << std::endl;
+
+    // Test swapping two arrays
+    int arr1[] = {1, 2, 3, 4, 5};
+    int arr2[] = {6, 7, 8, 9, 10};
+    int size = sizeof(arr1) / sizeof(arr1[0]);
+
+    std::cout << "Before swapping arrays: ";
+    displayArray(arr1, size);
+    displayArray(arr2, size);
+
+    swap(arr1, arr2, size);
+
+    std::cout << "After swapping arrays: ";
+    displayArray(arr1, size);
+    displayArray(arr2, size);
+
+    return 0;
+}
