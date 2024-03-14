@@ -1,0 +1,20 @@
+#include <iostream>
+
+// Define a constant variable for the value of pi
+const double PI = 3.14159265358979323846;
+
+int main() {
+    double radius;
+
+    // Get user input for the radius
+    std::cout << "Enter the radius of the sphere: ";
+    std::cin >> radius;
+
+    // Calculate the volume of the sphere
+    double volume = (4.0 / 3.0) * PI * radius * radius * radius;
+
+    // Display the calculated volume
+    std::cout << "Volume of the sphere with radius " << radius << " is: " << volume << std::endl;
+
+    return 0;
+}
