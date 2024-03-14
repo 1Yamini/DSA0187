@@ -1,0 +1,55 @@
+#include <iostream>
+
+class Complex {
+private:
+    double real;
+    double imag;
+
+public:
+    // Constructor to initialize the complex number
+    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+
+    // Overloaded addition operator
+    Complex operator+(const Complex& other) const {
+        return Complex(real + other.real, imag + other.imag);
+    }
+
+    // Overloaded subtraction operator
+    Complex operator-(const Complex& other) const {
+        return Complex(real - other.real, imag - other.imag);
+    }
+
+    // Function to display the complex number
+    void display() const {
+        if (imag < 0)
+            std::cout << real << " - " << -imag << "i" << std::endl;
+        else
+            std::cout << real << " + " << imag << "i" << std::endl;
+    }
+};
+
+int main() {
+    // Create two complex numbers
+    Complex num1(3.0, 4.0); // 3 + 4i
+    Complex num2(1.5, -2.5); // 1.5 - 2.5i
+
+    // Perform addition and display the result
+    std::cout << "Addition:" << std::endl;
+    Complex sum = num1 + num2;
+    num1.display();
+    std::cout << " + ";
+    num2.display();
+    std::cout << " = ";
+    sum.display();
+
+    // Perform subtraction and display the result
+    std::cout << "\nSubtraction:" << std::endl;
+    Complex diff = num1 - num2;
+    num1.display();
+    std::cout << " - ";
+    num2.display();
+    std::cout << " = ";
+    diff.display();
+
+    return 0;
+}
