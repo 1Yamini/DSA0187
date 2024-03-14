@@ -1,0 +1,19 @@
+#include <iostream>
+
+int main() {
+    int number;
+
+    // Get user input for the number
+    std::cout << "Enter an integer: ";
+    std::cin >> number;
+
+    // Check if the least significant bit is set using the bitwise AND operator
+    // An odd number will have the least significant bit set to 1
+    if (number & 1) {
+        std::cout << number << " is an odd number." << std::endl;
+    } else {
+        std::cout << number << " is not an odd number." << std::endl;
+    }
+
+    return 0;
+}
