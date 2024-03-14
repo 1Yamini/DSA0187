@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+// Function to calculate the area of a rectangle
+// Length and Width are parameters
+double calculateArea(double length, double width) {
+    return length * width;
+}
+
+// Function to calculate the area of a circle
+// Radius is the parameter
+double calculateArea(double radius) {
+    const double PI = 3.14159265358979323846;
+    return PI * radius * radius;
+}
+
+// Function to calculate the area of a triangle
+// Base and Height are parameters
+double calculateArea(double base, double height, bool isTriangle) {
+    return 0.5 * base * height;
+}
+
+int main() {
+    double length = 5.0, width = 4.0;
+    double radius = 3.0;
+    double base = 4.0, height = 3.0;
+    
+    // Calculate and display the area of a rectangle
+    cout << "Area of the rectangle: " << calculateArea(length, width) << endl;
+    
+    // Calculate and display the area of a circle
+    cout << "Area of the circle: " << calculateArea(radius) << endl;
+    
+    // Calculate and display the area of a triangle
+    // Note: The third parameter is used to distinguish this function from the rectangle function.
+    // It's a simple approach for demonstration. In a more complex or realistic scenario, using a different function name or a more advanced design pattern might be preferable.
+    cout << "Area of the triangle: " << calculateArea(base, height, true) << endl;
+    
+    return 0;
+}
