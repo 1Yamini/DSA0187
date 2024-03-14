@@ -1,0 +1,69 @@
+#include <iostream>
+#include <cmath>
+
+// Function prototypes
+double calculateVolume(double side);
+double calculateVolume(double length, double width, double height);
+double calculateVolume(double radius, double height);
+
+int main() {
+    int choice;
+    double volume;
+
+    // Display menu and prompt user for choice
+    std::cout << "Select a shape to calculate volume:" << std::endl;
+    std::cout << "1. Cube" << std::endl;
+    std::cout << "2. Rectangular prism" << std::endl;
+    std::cout << "3. Cylinder" << std::endl;
+    std::cout << "Enter your choice (1, 2, or 3): ";
+    std::cin >> choice;
+
+    // Calculate volume based on user choice
+    switch (choice) {
+        case 1: {
+            double side;
+            std::cout << "Enter the side length of the cube: ";
+            std::cin >> side;
+            volume = calculateVolume(side);
+            break;
+        }
+        case 2: {
+            double length, width, height;
+            std::cout << "Enter the length, width, and height of the rectangular prism: ";
+            std::cin >> length >> width >> height;
+            volume = calculateVolume(length, width, height);
+            break;
+        }
+        case 3: {
+            double radius, height;
+            std::cout << "Enter the radius and height of the cylinder: ";
+            std::cin >> radius >> height;
+            volume = calculateVolume(radius, height);
+            break;
+        }
+        default:
+            std::cout << "Invalid choice." << std::endl;
+            return 1; // Exit program with error
+    }
+
+    // Display the calculated volume
+    std::cout << "Volume: " << volume << std::endl;
+
+    return 0;
+}
+
+// Function to calculate the volume of a cube
+double calculateVolume(double side) {
+    return std::pow(side, 3);
+}
+
+// Function to calculate the volume of a rectangular prism
+double calculateVolume(double length, double width, double height) {
+    return length * width * height;
+}
+
+// Function to calculate the volume of a cylinder
+double calculateVolume(double radius, double height) {
+    const double PI = 3.14159265358979323846;
+    return PI * std::pow(radius, 2) * height;
+}
