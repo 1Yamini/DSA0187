@@ -1,0 +1,26 @@
+#include <iostream>
+
+void moveDisks(int n, char from_peg, char to_peg, char aux_peg) {
+    if (n == 1) {
+        std::cout << "Move disk 1 from peg " << from_peg << " to peg " << to_peg << std::endl;
+        return;
+    }
+    // Move n-1 disks from source to auxiliary, so they are out of the way
+    moveDisks(n-1, from_peg, aux_peg, to_peg);
+
+    // Move the nth disk from source to target
+    std::cout << "Move disk " << n << " from peg " << from_peg << " to peg " << to_peg << std::endl;
+
+    // Move the n-1 disks that we left on auxiliary back onto target
+    moveDisks(n-1, aux_peg, to_peg, from_peg);
+}
+
+int main() {
+    int n; // Number of disks
+    std::cout << "Enter the number of disks: ";
+    std::cin >> n;
+
+    // A, B and C are names of rods
+    moveDisks(n, 'A', 'C', 'B');  // A is the source, C is the destination, and B is the auxiliary
+    return 0;
+}
