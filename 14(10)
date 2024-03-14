@@ -1,0 +1,75 @@
+#include <iostream>
+
+class Rectangle {
+private:
+    double length;
+    double width;
+    int coordinates[2]; // Array to store (x, y) coordinates
+    static int count;   // Static member variable to keep track of total number of rectangles
+
+public:
+    // Constructor
+    Rectangle(double len = 0.0, double wid = 0.0, int xCoord = 0, int yCoord = 0)
+        : length(len), width(wid) {
+        coordinates[0] = xCoord; // Set x-coordinate
+        coordinates[1] = yCoord; // Set y-coordinate
+        count++;                // Increment count when a new object is created
+    }
+
+    // Destructor
+    ~Rectangle() {
+        count--; // Decrement count when an object is destroyed
+    }
+
+    // Function to set the length of the rectangle
+    void setLength(double len) {
+        length = len;
+    }
+
+    // Function to set the width of the rectangle
+    void setWidth(double wid) {
+        width = wid;
+    }
+
+    // Function to set the coordinates of the rectangle
+    void setCoordinates(int xCoord, int yCoord) {
+        coordinates[0] = xCoord; // Set x-coordinate
+        coordinates[1] = yCoord; // Set y-coordinate
+    }
+
+    // Function to get the length of the rectangle
+    double getLength() const {
+        return length;
+    }
+
+    // Function to get the width of the rectangle
+    double getWidth() const {
+        return width;
+    }
+
+    // Function to get the coordinates of the rectangle
+    void getCoordinates(int& xCoord, int& yCoord) const {
+        xCoord = coordinates[0]; // Get x-coordinate
+        yCoord = coordinates[1]; // Get y-coordinate
+    }
+
+    // Static member function to return the count of Rectangle objects
+    static int getCount() {
+        return count;
+    }
+};
+
+// Initialize static member variable count to 0
+int Rectangle::count = 0;
+
+int main() {
+    // Create Rectangle objects
+    Rectangle rect1(5.0, 3.0, 2, 2);
+    Rectangle rect2(4.0, 4.0, 1, 1);
+    Rectangle rect3(6.0, 2.0, 3, 3);
+
+    // Display the total number of Rectangle objects created
+    std::cout << "Total number of Rectangle objects created: " << Rectangle::getCount() << std::endl;
+
+    return 0;
+}
