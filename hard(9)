@@ -1,0 +1,23 @@
+#include <iostream>
+
+// Define the callback function type
+typedef void (*CallbackFunction)(int);
+
+// Function that takes a callback as an argument and calls it
+void performOperation(int x, CallbackFunction callback) {
+    std::cout << "Performing an operation with " << x << std::endl;
+    // Perform some operation, then call the callback function with the result
+    callback(x * 2); // For demonstration, we'll just multiply x by 2
+}
+
+// A possible callback function that matches the CallbackFunction type
+void myCallback(int result) {
+    std::cout << "Callback called with result: " << result << std::endl;
+}
+
+int main() {
+    int value = 5;
+    // Call performOperation, passing in a value and the callback function
+    performOperation(value, myCallback);
+    return 0;
+}
