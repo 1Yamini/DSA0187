@@ -1,0 +1,97 @@
+#include <iostream>
+#include <vector>
+
+class Matrix {
+private:
+    std::vector<std::vector<int>> mat;
+    int rows;
+    int cols;
+
+public:
+    // Constructor to initialize the matrix with given dimensions and values
+    Matrix(int numRows, int numCols, const std::vector<std::vector<int>>& values) : rows(numRows), cols(numCols), mat(values) {}
+
+    // Overloaded addition operator
+    Matrix operator+(const Matrix& other) const {
+        if (rows != other.rows || cols != other.cols) {
+            throw std::invalid_argument("Matrices must have the same dimensions for addition.");
+        }
+
+        Matrix result(rows, cols, std::vector<std::vector<int>>(rows, std::vector<int>(cols, 0)));
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                result.mat[i][j] = mat[i][j] + other.mat[i][j];
+            }
+        }
+        return result;
+    }
+
+    // Overloaded subtraction operator
+    Matrix operator-(const Matrix& other) const {
+        if (rows != other.rows || cols != other.cols) {
+            throw std::invalid_argument("Matrices must have the same dimensions for subtraction.");
+        }
+
+        Matrix result(rows, cols, std::vector<std::vector<int>>(rows, std::vector<int>(cols, 0)));
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                result.mat[i][j] = mat[i][j] - other.mat[i][j];
+            }
+        }
+        return result;
+    }
+
+    // Overloaded multiplication operator
+    Matrix operator*(const Matrix& other) const {
+        if (cols != other.rows) {
+            throw std::invalid_argument("Number of columns in the first matrix must be equal to the number of rows in the second matrix for multiplication.");
+        }
+
+        Matrix result(rows, other.cols, std::vector<std::vector<int>>(rows, std::vector<int>(other.cols, 0)));
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < other.cols; ++j) {
+                for (int k = 0; k < cols; ++k) {
+                    result.mat[i][j] += mat[i][k] * other.mat[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
+    // Function to display the matrix
+    void display() const {
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                std::cout << mat[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+};
+
+int main() {
+    // Example matrices
+    Matrix A(2, 3, {{1, 2, 3}, {4, 5, 6}});
+    Matrix B(2, 3, {{7, 8, 9}, {10, 11, 12}});
+    Matrix C(3, 2, {{1, 2}, {3, 4}, {5, 6}});
+
+    try {
+        // Addition
+        std::cout << "Matrix A + Matrix B:" << std::endl;
+        (A + B).display();
+        std::cout << std::endl;
+
+        // Subtraction
+        std::cout << "Matrix B - Matrix A:" << std::endl;
+        (B - A).display();
+        std::cout << std::endl;
+
+        // Multiplication
+        std::cout << "Matrix A * Matrix C:" << std::endl;
+        (A * C).display();
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
