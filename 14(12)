@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+class Student {
+private:
+    std::string name;
+    int id;
+    int grades[3]; // Array to store grades in three subjects
+
+public:
+    // Function to set student details
+    void setDetails(const std::string& studentName, int studentId) {
+        name = studentName;
+        id = studentId;
+    }
+
+    // Function to set grades for three subjects
+    void setGrades(int grade1, int grade2, int grade3) {
+        grades[0] = grade1;
+        grades[1] = grade2;
+        grades[2] = grade3;
+    }
+
+    // Function to get student name
+    std::string getName() const {
+        return name;
+    }
+
+    // Function to get student ID
+    int getId() const {
+        return id;
+    }
+
+    // Function to get grades in three subjects
+    void getGrades(int& grade1, int& grade2, int& grade3) const {
+        grade1 = grades[0];
+        grade2 = grades[1];
+        grade3 = grades[2];
+    }
+};
+
+int main() {
+    // Create a Student object
+    Student student;
+
+    // Set student details
+    student.setDetails("John Doe", 123456);
+
+    // Set grades for three subjects
+    student.setGrades(85, 90, 75);
+
+    // Get and display student details
+    std::cout << "Name: " << student.getName() << std::endl;
+    std::cout << "ID: " << student.getId() << std::endl;
+
+    // Get and display grades in three subjects
+    int grade1, grade2, grade3;
+    student.getGrades(grade1, grade2, grade3);
+    std::cout << "Grades: " << grade1 << ", " << grade2 << ", " << grade3 << std::endl;
+
+    return 0;
+}
