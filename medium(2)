@@ -1,0 +1,23 @@
+#include <iostream>
+
+int main() {
+    int integerNumber;
+    float floatNumber;
+
+    // Get user input for the integer number
+    std::cout << "Enter an integer number: ";
+    std::cin >> integerNumber;
+
+    // Get user input for the float number
+    std::cout << "Enter a float number: ";
+    std::cin >> floatNumber;
+
+    // Perform division and display the result
+    // Implicit conversion of the integer to float is handled automatically
+    // Result will be a float
+    float result = floatNumber / integerNumber;
+
+    std::cout << "Result of division (float / integer): " << result << std::endl;
+
+    return 0;
+}
