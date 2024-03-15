@@ -1,0 +1,61 @@
+#include <iostream>
+
+class Matrix {
+private:
+    int rows;
+    int cols;
+    int** data;
+
+public:
+    // Parameterized constructor to initialize the matrix
+    Matrix(int numRows, int numCols) : rows(numRows), cols(numCols) {
+        // Allocate memory for the matrix
+        data = new int*[rows];
+        for (int i = 0; i < rows; ++i) {
+            data[i] = new int[cols];
+        }
+    }
+
+    // Copy constructor to perform a deep copy
+    Matrix(const Matrix& other) : rows(other.rows), cols(other.cols) {
+        // Allocate memory for the new matrix
+        data = new int*[rows];
+        for (int i = 0; i < rows; ++i) {
+            data[i] = new int[cols];
+            // Copy data from the other matrix
+            for (int j = 0; j < cols; ++j) {
+                data[i][j] = other.data[i][j];
+            }
+        }
+    }
+
+    // Destructor to deallocate memory
+    ~Matrix() {
+        for (int i = 0; i < rows; ++i) {
+            delete[] data[i];
+        }
+        delete[] data;
+    }
+
+    // Getter methods
+    int getRows() const {
+        return rows;
+    }
+
+    int getCols() const {
+        return cols;
+    }
+};
+
+int main() {
+    // Create a matrix with 3 rows and 4 columns
+    Matrix mat1(3, 4);
+
+    // Create another matrix by copying mat1
+    Matrix mat2 = mat1;
+
+    // Display dimensions of mat2
+    std::cout << "Rows: " << mat2.getRows() << ", Columns: " << mat2.getCols() << std::endl;
+
+    return 0;
+}
