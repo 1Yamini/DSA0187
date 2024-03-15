@@ -1,0 +1,52 @@
+#include <iostream>
+#include <cstring>
+
+class String {
+private:
+    char* str;
+
+public:
+    // Constructor
+    String(const char* s) {
+        if (s != nullptr) {
+            str = new char[strlen(s) + 1];
+            strcpy(str, s);
+        } else {
+            str = nullptr;
+        }
+    }
+
+    // Copy constructor (deep copy)
+    String(const String& other) {
+        if (other.str != nullptr) {
+            str = new char[strlen(other.str) + 1];
+            strcpy(str, other.str);
+        } else {
+            str = nullptr;
+        }
+    }
+
+    // Destructor
+    ~String() {
+        delete[] str;
+    }
+
+    // Getter method to retrieve the string
+    const char* getString() const {
+        return str;
+    }
+};
+
+int main() {
+    // Creating a String object
+    String str1("Hello");
+
+    // Using the copy constructor to create another String object
+    String str2 = str1;
+
+    // Displaying the strings
+    std::cout << "String 1: " << str1.getString() << std::endl;
+    std::cout << "String 2: " << str2.getString() << std::endl;
+
+    return 0;
+}
