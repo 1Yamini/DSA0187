@@ -1,0 +1,37 @@
+#include <iostream>
+
+class Rectangle {
+private:
+    double length;
+    double width;
+
+public:
+    // Constructors
+    Rectangle(double len = 1.0, double wid = 1.0) : length(len), width(wid) {}
+    
+    // Overloading the addition operator (+) to add the areas of two rectangles
+    Rectangle operator+(const Rectangle& other) const {
+        double newLength = length + other.length;
+        double newWidth = width + other.width;
+        return Rectangle(newLength, newWidth);
+    }
+
+    // Function to calculate area
+    double calculateArea() const {
+        return length * width;
+    }
+};
+
+int main() {
+    // Creating two Rectangle objects
+    Rectangle rect1(3.0, 4.0);
+    Rectangle rect2(2.0, 5.0);
+
+    // Adding areas of two rectangles using operator overloading
+    Rectangle sumRect = rect1 + rect2;
+
+    // Displaying the area of the resulting rectangle
+    std::cout << "Area of the resulting rectangle: " << sumRect.calculateArea() << std::endl;
+
+    return 0;
+}
