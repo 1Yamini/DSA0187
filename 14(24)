@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee {
+private:
+    int id;
+    string name;
+    double salary;
+    static double totalSalary; // Static member to keep track of total salary of all employees
+
+public:
+    // Constructor to initialize an employee object
+    Employee(int id, string name, double salary) : id(id), name(name), salary(0) { // Initialize salary as 0 then set it using setSalary to ensure totalSalary is correctly updated
+        setSalary(salary);
+    }
+
+    // Setter for salary that updates the totalSalary
+    void setSalary(double newSalary) {
+        totalSalary -= salary; // Subtract the old salary from totalSalary
+        salary = newSalary;
+        totalSalary += salary; // Add the new salary to totalSalary
+    }
+
+    // Getter for id
+    int getId() const {
+        return id;
+    }
+
+    // Getter for name
+    string getName() const {
+        return name;
+    }
+
+    // Getter for salary
+    double getSalary() const {
+        return salary;
+    }
+
+    // Static member function to get total salary
+    static double getTotalSalary() {
+        return totalSalary;
+    }
+
+    // Function to display employee details
+    void display() const {
+        cout << "ID: " << id << ", Name: " << name << ", Salary: $" << salary << endl;
+    }
+};
+
+// Initialize static member variable
+double Employee::totalSalary = 0;
+
+int main() {
+    // Creating employee objects
+    Employee emp1(1, "John Doe", 50000);
+    Employee emp2(2, "Jane Smith", 60000);
+
+    // Displaying employee details
+    emp1.display();
+    emp2.display();
+
+    // Display total salary of all employees
+    cout << "Total Salary of All Employees: $" << Employee::getTotalSalary() << endl;
+
+    // Update salary
+    emp1.setSalary(55000);
+    emp2.setSalary(65000);
+
+    // Display updated details
+    cout << "After Salary Update:" << endl;
+    emp1.display();
+    emp2.display();
+
+    // Display updated total salary of all employees
+    cout << "Updated Total Salary of All Employees: $" << Employee::getTotalSalary() << endl;
+
+    return 0;
+}
