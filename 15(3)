@@ -1,0 +1,24 @@
+#include <iostream>
+class Rectangle {
+private:
+    double length;
+    double width;
+public:
+    Rectangle(double len = 1.0, double wid = 1.0) : length(len), width(wid) {}
+    Rectangle(double len, double wid) : length(len), width(wid) {}
+    double getLength() const {
+        return length;
+    }
+    double getWidth() const {
+        return width;
+    }
+};
+int main() {
+    Rectangle defaultRect; 
+    Rectangle customRect(5.0, 3.0); 
+    std::cout << "Default Rectangle Dimensions: Length = " << defaultRect.getLength()
+              << ", Width = " << defaultRect.getWidth() << std::endl;
+    std::cout << "Custom Rectangle Dimensions: Length = " << customRect.getLength()
+              << ", Width = " << customRect.getWidth() << std::endl;
+    return 0;
+}
