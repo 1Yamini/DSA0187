@@ -1,0 +1,39 @@
+#include <iostream>
+
+class Point {
+private:
+    double x;
+    double y;
+
+public:
+    // Constructor
+    Point(double _x = 0.0, double _y = 0.0) : x(_x), y(_y) {}
+
+    // Overloading the addition operator (+)
+    Point operator+(const Point& other) const {
+        return Point(x + other.x, y + other.y);
+    }
+
+    // Getter methods
+    double getX() const {
+        return x;
+    }
+
+    double getY() const {
+        return y;
+    }
+};
+
+int main() {
+    // Creating two Point objects
+    Point p1(1.0, 2.0);
+    Point p2(3.0, 4.0);
+
+    // Adding two Point objects together using operator overloading
+    Point p3 = p1 + p2;
+
+    // Displaying the result
+    std::cout << "Result of addition: (" << p3.getX() << ", " << p3.getY() << ")" << std::endl;
+
+    return 0;
+}
