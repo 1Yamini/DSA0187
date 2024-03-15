@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cmath> // For sqrt() function in the triangle calculations
+
+using namespace std;
+
+// Function prototypes
+double area(double length, double width); // Rectangle
+double area(double radius); // Circle
+double area(double a, double b, double c); // Triangle
+
+double perimeter(double length, double width); // Rectangle
+double perimeter(double radius); // Circle
+double perimeter(double a, double b, double c); // Triangle
+
+int main() {
+    // Example usage of the functions for a rectangle, circle, and triangle
+    double rectangleLength = 5.0, rectangleWidth = 3.0;
+    cout << "Rectangle Area: " << area(rectangleLength, rectangleWidth) << endl;
+    cout << "Rectangle Perimeter: " << perimeter(rectangleLength, rectangleWidth) << endl;
+
+    double circleRadius = 4.0;
+    cout << "Circle Area: " << area(circleRadius) << endl;
+    cout << "Circle Circumference: " << perimeter(circleRadius) << endl;
+
+    double triangleSideA = 3.0, triangleSideB = 4.0, triangleSideC = 5.0;
+    cout << "Triangle Area: " << area(triangleSideA, triangleSideB, triangleSideC) << endl;
+    cout << "Triangle Perimeter: " << perimeter(triangleSideA, triangleSideB, triangleSideC) << endl;
+
+    return 0;
+}
+
+// Function implementations
+// Rectangle
+double area(double length, double width) {
+    return length * width;
+}
+
+double perimeter(double length, double width) {
+    return 2 * (length + width);
+}
+
+// Circle
+double area(double radius) {
+    const double PI = 3.14159265358979323846;
+    return PI * radius * radius;
+}
+
+double perimeter(double radius) {
+    const double PI = 3.14159265358979323846;
+    return 2 * PI * radius;
+}
+
+// Triangle
+double area(double a, double b, double c) {
+    // Using Heron's formula
+    double s = (a + b + c) / 2.0;
+    return sqrt(s * (s - a) * (s - b) * (s - c));
+}
+
+double perimeter(double a, double b, double c) {
+    return a + b + c;
+}
