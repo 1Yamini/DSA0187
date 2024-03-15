@@ -1,0 +1,39 @@
+#include <iostream>
+#include <iomanip>
+
+class Date {
+private:
+    int day;
+    int month;
+    int year;
+
+public:
+    // Default constructor
+    Date() : day(1), month(1), year(2000) {}
+
+    // Overloading the stream insertion operator (<<) to write dates to standard output
+    friend std::ostream& operator<<(std::ostream& out, const Date& date) {
+        out << std::setw(2) << std::setfill('0') << date.day << "/"
+            << std::setw(2) << std::setfill('0') << date.month << "/"
+            << date.year;
+        return out;
+    }
+
+    // Overloading the stream extraction operator (>>) to read dates from standard input
+    friend std::istream& operator>>(std::istream& in, Date& date) {
+        char delimiter;
+        in >> date.day >> delimiter >> date.month >> delimiter >> date.year;
+        return in;
+    }
+};
+
+int main() {
+    Date myDate;
+
+    std::cout << "Enter a date (day/month/year): ";
+    std::cin >> myDate;
+
+    std::cout << "Entered date: " << myDate << std::endl;
+
+    return 0;
+}
