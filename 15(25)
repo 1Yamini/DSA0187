@@ -1,0 +1,68 @@
+#include <iostream>
+
+class BinarySearchTree {
+private:
+    struct Node {
+        int data;
+        Node* left;
+        Node* right;
+
+        // Constructor
+        Node(int value) : data(value), left(nullptr), right(nullptr) {}
+    };
+
+    Node* root;
+
+    // Function to recursively copy the tree
+    Node* copyTree(const Node* originalNode) {
+        if (originalNode == nullptr) {
+            return nullptr;
+        }
+        Node* newNode = new Node(originalNode->data);
+        newNode->left = copyTree(originalNode->left);
+        newNode->right = copyTree(originalNode->right);
+        return newNode;
+    }
+
+public:
+    // Constructor
+    BinarySearchTree() : root(nullptr) {}
+
+    // Copy constructor
+    BinarySearchTree(const BinarySearchTree& other) {
+        root = copyTree(other.root);
+    }
+
+    // Destructor
+    ~BinarySearchTree() {
+        destroyTree(root);
+    }
+
+    // Function to recursively destroy the tree
+    void destroyTree(Node* node) {
+        if (node != nullptr) {
+            destroyTree(node->left);
+            destroyTree(node->right);
+            delete node;
+        }
+    }
+
+    // Other member functions can be added here...
+};
+
+int main() {
+    // Example usage of BinarySearchTree with copy constructor
+    BinarySearchTree tree1;
+    tree1.insert(5);
+    tree1.insert(3);
+    tree1.insert(7);
+
+    // Creating a deep copy of tree1
+    BinarySearchTree tree2(tree1);
+
+    // Displaying tree2
+    // For demonstration purposes, display functions need to be implemented in the BinarySearchTree class
+    // tree2.display();
+
+    return 0;
+}
