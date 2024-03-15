@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+
+class Complex {
+private:
+    double real;
+    double imag;
+
+public:
+    // Constructor
+    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+
+    // Display function
+    void display() const {
+        if (imag < 0)
+            cout << "Complex number: " << real << " - " << abs(imag) << "i" << endl;
+        else
+            cout << "Complex number: " << real << " + " << imag << "i" << endl;
+    }
+
+    // Friend functions for arithmetic operations
+    friend Complex add(const Complex &c1, const Complex &c2);
+    friend Complex subtract(const Complex &c1, const Complex &c2);
+    friend Complex multiply(const Complex &c1, const Complex &c2);
+    friend Complex divide(const Complex &c1, const Complex &c2);
+};
+
+// Implementation of friend functions
+Complex add(const Complex &c1, const Complex &c2) {
+    return Complex(c1.real + c2.real, c1.imag + c2.imag);
+}
+
+Complex subtract(const Complex &c1, const Complex &c2) {
+    return Complex(c1.real - c2.real, c1.imag - c2.imag);
+}
+
+Complex multiply(const Complex &c1, const Complex &c2) {
+    double realPart = c1.real * c2.real - c1.imag * c2.imag;
+    double imagPart = c1.real * c2.imag + c1.imag * c2.real;
+    return Complex(realPart, imagPart);
+}
+
+Complex divide(const Complex &c1, const Complex &c2) {
+    double denominator = c2.real * c2.real + c2.imag * c2.imag;
+    double realPart = (c1.real * c2.real + c1.imag * c2.imag) / denominator;
+    double imagPart = (c1.imag * c2.real - c1.real * c2.imag) / denominator;
+    return Complex(realPart, imagPart);
+}
+
+int main() {
+    Complex c1(4, 5), c2(2, -3);
+
+    Complex sum = add(c1, c2);
+    Complex difference = subtract(c1, c2);
+    Complex product = multiply(c1, c2);
+    Complex quotient = divide(c1, c2);
+
+    cout << "First Complex Number: ";
+    c1.display();
+
+    cout << "Second Complex Number: ";
+    c2.display();
+
+    cout << "Addition: ";
+    sum.display();
+
+    cout << "Subtraction: ";
+    difference.display();
+
+    cout << "Multiplication: ";
+    product.display();
+
+    cout << "Division: ";
+    quotient.display();
+
+    return 0;
+}
