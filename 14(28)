@@ -1,0 +1,78 @@
+#include <iostream>
+#include <cmath> // For std::sqrt in Triangle area calculation
+using namespace std;
+
+// Abstract base class
+class Shape {
+public:
+    // Virtual functions for area and perimeter with =0 indicate pure virtual functions
+    virtual double area() const = 0;
+    virtual double perimeter() const = 0;
+
+    // Virtual destructor to ensure derived class destructors are called
+    virtual ~Shape() {}
+};
+
+// Derived class for Rectangle
+class Rectangle : public Shape {
+private:
+    double width, height;
+public:
+    Rectangle(double w, double h) : width(w), height(h) {}
+
+    double area() const override {
+        return width * height;
+    }
+
+    double perimeter() const override {
+        return 2 * (width + height);
+    }
+};
+
+// Derived class for Circle
+class Circle : public Shape {
+private:
+    double radius;
+public:
+    Circle(double r) : radius(r) {}
+
+    double area() const override {
+        return M_PI * radius * radius;
+    }
+
+    double perimeter() const override {
+        return 2 * M_PI * radius;
+    }
+};
+
+// Derived class for Triangle
+class Triangle : public Shape {
+private:
+    double side1, side2, side3;
+public:
+    Triangle(double s1, double s2, double s3) : side1(s1), side2(s2), side3(s3) {}
+
+    double area() const override {
+        // Using Heron's formula
+        double s = (side1 + side2 + side3) / 2.0;
+        return std::sqrt(s * (s - side1) * (s - side2) * (s - side3));
+    }
+
+    double perimeter() const override {
+        return side1 + side2 + side3;
+    }
+};
+
+int main() {
+    Rectangle rect(5.0, 3.0);
+    Circle circ(4.0);
+    Triangle tri(3.0, 4.0, 5.0);
+
+    Shape* shapes[] = {&rect, &circ, &tri};
+
+    for (Shape* shape : shapes) {
+        cout << "Area: " << shape->area() << ", Perimeter: " << shape->perimeter() << endl;
+    }
+
+    return 0;
+}
