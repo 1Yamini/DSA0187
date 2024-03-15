@@ -1,0 +1,37 @@
+#include <iostream>
+
+template<typename T>
+T average(const T* arr, size_t size);
+
+int main() {
+    // Test with integers
+    int intArray[] = {1, 2, 3, 4, 5};
+    size_t intSize = sizeof(intArray) / sizeof(intArray[0]);
+    std::cout << "Average of integers: " << average(intArray, intSize) << std::endl;
+
+    // Test with floating-point numbers
+    double doubleArray[] = {1.5, 2.5, 3.5, 4.5, 5.5};
+    size_t doubleSize = sizeof(doubleArray) / sizeof(doubleArray[0]);
+    std::cout << "Average of doubles: " << average(doubleArray, doubleSize) << std::endl;
+
+    // Test with characters (ASCII values)
+    char charArray[] = {'a', 'b', 'c', 'd', 'e'};
+    size_t charSize = sizeof(charArray) / sizeof(charArray[0]);
+    std::cout << "Average of characters (ASCII values): " << static_cast<int>(average(charArray, charSize)) << std::endl;
+
+    return 0;
+}
+
+// Template function to calculate the average of elements in an array
+template<typename T>
+T average(const T* arr, size_t size) {
+    if (size == 0) {
+        return static_cast<T>(0);
+    }
+
+    T sum = static_cast<T>(0);
+    for (size_t i = 0; i < size; ++i) {
+        sum += arr[i];
+    }
+    return sum / static_cast<T>(size);
+}
