@@ -1,0 +1,25 @@
+#include <iostream>
+class DynamicArray {
+private:
+    int* array;
+    int size;
+public:
+    DynamicArray(int arraySize) : size(arraySize) {
+        array = new int[size];
+    }
+    ~DynamicArray() {
+        delete[] array;
+    }
+    void displayElements() const {
+        std::cout << "Array elements: ";
+        for (int i = 0; i < size; ++i) {
+            std::cout << array[i] << " ";
+        }
+        std::cout << std::endl;
+    }
+};
+int main() {
+    DynamicArray myArray(5);
+    myArray.displayElements();
+    return 0;
+}
