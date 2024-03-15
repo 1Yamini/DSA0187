@@ -1,0 +1,27 @@
+#include <iostream>
+
+class DynamicArray {
+private:
+    int* array;
+    int size;
+
+public:
+    // Parameterized constructor
+    DynamicArray(int initialSize) : size(initialSize) {
+        array = new int[size];
+    }
+
+    // Destructor
+    ~DynamicArray() {
+        delete[] array;
+    }
+};
+
+int main() {
+    // Creating a DynamicArray object with an initial size of 10
+    DynamicArray myArray(10);
+
+    // Other operations with DynamicArray can be added here
+
+    return 0;
+}
