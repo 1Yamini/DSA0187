@@ -1,0 +1,16 @@
+#include <iostream>
+#include <string>
+class Car {
+private:
+    std::string model;
+public:
+    Car() : model("Unknown") {}
+    std::string getModel() const {
+        return model;
+    }
+};
+int main() {
+    Car myCar;
+    std::cout << "The model of the car is: " << myCar.getModel() << std::endl;
+    return 0;
+}
