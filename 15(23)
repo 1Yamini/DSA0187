@@ -1,0 +1,59 @@
+#include <iostream>
+#include <vector>
+
+class Polynomial {
+private:
+    std::vector<int> coefficients;
+
+public:
+    // Parameterized constructor to initialize the polynomial coefficients
+    Polynomial(const std::vector<int>& coeffs) : coefficients(coeffs) {}
+
+    // Overloading the addition operator (+) to add two polynomials
+    Polynomial operator+(const Polynomial& other) const {
+        std::vector<int> resultCoefficients;
+        size_t maxSize = std::max(coefficients.size(), other.coefficients.size());
+        resultCoefficients.reserve(maxSize);
+
+        for (size_t i = 0; i < maxSize; ++i) {
+            int sum = 0;
+            if (i < coefficients.size()) {
+                sum += coefficients[i];
+            }
+            if (i < other.coefficients.size()) {
+                sum += other.coefficients[i];
+            }
+            resultCoefficients.push_back(sum);
+        }
+
+        return Polynomial(resultCoefficients);
+    }
+
+    // Function to display the polynomial
+    void display() const {
+        for (size_t i = 0; i < coefficients.size(); ++i) {
+            std::cout << coefficients[i] << "x^" << i;
+            if (i < coefficients.size() - 1) {
+                std::cout << " + ";
+            }
+        }
+        std::cout << std::endl;
+    }
+};
+
+int main() {
+    // Initializing two polynomials with coefficients
+    std::vector<int> coeffs1 = {2, 3, 4}; // 2 + 3x + 4x^2
+    std::vector<int> coeffs2 = {1, 2, 3}; // 1 + 2x + 3x^2
+    Polynomial poly1(coeffs1);
+    Polynomial poly2(coeffs2);
+
+    // Adding two polynomials
+    Polynomial sum = poly1 + poly2;
+
+    // Displaying the result
+    std::cout << "Result of addition:" << std::endl;
+    sum.display();
+
+    return 0;
+}
