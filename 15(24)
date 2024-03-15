@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+
+class Employee {
+private:
+    std::string name;
+    int age;
+    double salary;
+
+public:
+    // Parameterized constructor to initialize employee details
+    Employee(const std::string& _name, int _age, double _salary) : name(_name), age(_age), salary(_salary) {}
+
+    // Overloading the less than operator (<) to compare employees based on salaries
+    bool operator<(const Employee& other) const {
+        return salary < other.salary;
+    }
+
+    // Overloading the greater than operator (>) to compare employees based on salaries
+    bool operator>(const Employee& other) const {
+        return salary > other.salary;
+    }
+
+    // Getter methods
+    std::string getName() const {
+        return name;
+    }
+
+    int getAge() const {
+        return age;
+    }
+
+    double getSalary() const {
+        return salary;
+    }
+};
+
+int main() {
+    // Creating two Employee objects
+    Employee emp1("John", 30, 50000.0);
+    Employee emp2("Alice", 25, 60000.0);
+
+    // Comparing employees based on their salaries
+    if (emp1 < emp2) {
+        std::cout << emp1.getName() << " earns less than " << emp2.getName() << std::endl;
+    } else {
+        std::cout << emp1.getName() << " earns more than or equal to " << emp2.getName() << std::endl;
+    }
+
+    if (emp1 > emp2) {
+        std::cout << emp1.getName() << " earns more than " << emp2.getName() << std::endl;
+    } else {
+        std::cout << emp1.getName() << " earns less than or equal to " << emp2.getName() << std::endl;
+    }
+
+    return 0;
+}
