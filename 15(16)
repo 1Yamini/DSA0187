@@ -1,0 +1,39 @@
+#include <iostream>
+
+class Vector2D {
+private:
+    double x;
+    double y;
+
+public:
+    // Constructor
+    Vector2D(double _x = 0.0, double _y = 0.0) : x(_x), y(_y) {}
+
+    // Overloading the addition operator (+)
+    Vector2D operator+(const Vector2D& other) const {
+        return Vector2D(x + other.x, y + other.y);
+    }
+
+    // Getter methods
+    double getX() const {
+        return x;
+    }
+
+    double getY() const {
+        return y;
+    }
+};
+
+int main() {
+    // Creating two Vector2D objects
+    Vector2D vec1(2.0, 3.0);
+    Vector2D vec2(1.0, 4.0);
+
+    // Adding two vectors using operator overloading
+    Vector2D sum = vec1 + vec2;
+
+    // Displaying the result
+    std::cout << "Result of addition: (" << sum.getX() << ", " << sum.getY() << ")" << std::endl;
+
+    return 0;
+}
