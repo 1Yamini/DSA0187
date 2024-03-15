@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+class Person {
+private:
+    std::string name;
+    int age;
+public:
+    Person(const std::string& n, int a) : name(n), age(a) {}
+    Person(const Person& other) : name(other.name), age(other.age) {}
+    ~Person() {
+        std::cout << "Goodbye, " << name << "!" << std::endl;
+    }
+    std::string getName() const {
+        return name;
+    }
+    int getAge() const {
+        return age;
+    }
+};
+int main() {
+    Person person1("Alice", 30);
+    Person person2 = person1;
+    return 0;
+}
