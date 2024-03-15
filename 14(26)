@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+void factorial(int n, unsigned long long &result, int start = 1);
+int main() {
+    int number;
+    unsigned long long result = 1; 
+    cout << "Enter a positive integer: ";
+    cin >> number;
+    if (number < 0) {
+        cout << "Factorial of a negative number doesn't exist." << endl;
+    } else {
+        factorial(number, result); 
+        cout << "Factorial of " << number << " is: " << result << endl;
+    }
+
+    return 0;
+}
+void factorial(int n, unsigned long long &result, int start) {
+    result = start; 
+    for(int i = 1; i <= n; ++i) {
+        result *= i;
+    }
+}
