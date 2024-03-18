@@ -1,27 +1,40 @@
-import math
+#include <iostream>
 
-class Shape:
-    def getArea(self):
-        pass
+class Shape {
+public:
+    virtual double getArea() const = 0; // Pure virtual function
+};
 
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-    
-    def getArea(self):
-        return self.width * self.height
+class Rectangle : public Shape {
+private:
+    double length;
+    double width;
+public:
+    Rectangle(double l, double w) : length(l), width(w) {}
 
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
-    
-    def getArea(self):
-        return math.pi * self.radius**2
+    double getArea() const override {
+        return length * width;
+    }
+};
 
-# Example usage:
-rectangle = Rectangle(5, 4)
-circle = Circle(3)
+class Circle : public Shape {
+private:
+    double radius;
+public:
+    Circle(double r) : radius(r) {}
 
-print("Area of Rectangle:", rectangle.getArea())  # Output: 20
-print("Area of Circle:", circle.getArea())        # Output: 28.274333882308138
+    double getArea() const override {
+        return 3.14159 * radius * radius; // Assuming pi to be approximately 3.14159
+    }
+};
+
+int main() {
+    Rectangle rectangle(5, 4);
+    Circle circle(3);
+
+    std::cout << "Area of Rectangle: " << rectangle.getArea() << std::endl;
+    std::cout << "Area of Circle: " << circle.getArea() << std::endl;
+
+    return 0;
+}
+
